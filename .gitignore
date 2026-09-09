@@ -1,0 +1,141 @@
+#####################################################
+# Visual Studio 2022/2026 + .NET/C#
+#####################################################
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+*.user
+*.userosscache
+*.suo
+*.rsuser
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+!packages/repositories.config
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Publish
+publish/
+PublishProfiles/
+
+# Azure
+*.publishsettings
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Generated files
+Generated/
+Generated Files/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# DotCover
+*.dotCover
+
+# SQL Server
+*.mdf
+*.ldf
+
+# LocalDB
+*.dbmdl
+
+# IIS Express
+/.vs/config/applicationhost.config
+
+# Rider caches
+.idea/
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+
+# Coverlet
+coverage.json
+
+# SonarQube
+.sonarqube/
+
+# Entity Framework
+*.jfm
+
+# Secrets
+secrets.json
+
+# User-specific publish profiles
+*.pubxml.user
+
+# Azure Functions
+bin/Debug/net*/generated/
+
+# Local settings
+local.settings.json
+
+# Environment files
+.env
+.env.*
+
+# Backup files
+*.bak
+*.backup
+
+#####################################################
+# Keep project and solution files
+#####################################################
+!*.sln
+!*.csproj
+!*.fsproj
+!*.vbproj
+!Directory.Build.props
+!Directory.Build.targets
+!NuGet.Config
+!global.json
