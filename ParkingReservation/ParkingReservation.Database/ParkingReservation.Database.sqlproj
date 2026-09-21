@@ -64,6 +64,8 @@
     <Folder Include="meta" />
     <Folder Include="meta\Tables" />
     <Folder Include="Scripts" />
+    <Folder Include="sec\Types" />
+    <Folder Include="sec\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\sec.sql" />
@@ -87,6 +89,8 @@
     <Build Include="meta\Tables\EnumValue.sql" />
     <Build Include="meta\Tables\EnumColumn.sql" />
     <None Include="Scripts\ParkingReservation.Init.sql" />
+    <Build Include="sec\Types\EntraUserType.sql" />
+    <Build Include="sec\Stored Procedures\p_SyncEntraUsers.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParkingReservation.Development.publish.xml" />
