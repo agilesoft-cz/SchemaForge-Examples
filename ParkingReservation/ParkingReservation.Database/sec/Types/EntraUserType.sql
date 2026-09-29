@@ -2,6 +2,8 @@
 (
     [ObjectId]          UNIQUEIDENTIFIER    NOT NULL PRIMARY KEY,
     [Name]              NVARCHAR(256)       NOT NULL,
+    [GivenName]         NVARCHAR(100)       NOT NULL,
+    [Surname]           NVARCHAR(100)       NOT NULL,
     [Email]             NVARCHAR(256)       NOT NULL,
     [UserPrincipalName] NVARCHAR(256)       NOT NULL,
     [MobilePhone]       NVARCHAR(64)        NOT NULL,

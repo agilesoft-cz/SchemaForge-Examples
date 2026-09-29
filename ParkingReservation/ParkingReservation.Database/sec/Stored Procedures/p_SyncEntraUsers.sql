@@ -16,6 +16,8 @@ BEGIN
 
         WHEN MATCHED AND (
                 target.[Name] COLLATE DATABASE_DEFAULT <> source.[Name] COLLATE DATABASE_DEFAULT
+             OR target.[GivenName] COLLATE DATABASE_DEFAULT <> source.[GivenName] COLLATE DATABASE_DEFAULT
+             OR target.[Surname] COLLATE DATABASE_DEFAULT <> source.[Surname] COLLATE DATABASE_DEFAULT
              OR target.[Email] COLLATE DATABASE_DEFAULT <> source.[Email] COLLATE DATABASE_DEFAULT
              OR target.[UserPrincipalName] COLLATE DATABASE_DEFAULT <> source.[UserPrincipalName] COLLATE DATABASE_DEFAULT
              OR target.[MobilePhone] COLLATE DATABASE_DEFAULT <> source.[MobilePhone] COLLATE DATABASE_DEFAULT
@@ -27,6 +29,8 @@ BEGIN
             )
             THEN UPDATE SET
                 [Name]              = source.[Name],
+                [GivenName]         = source.[GivenName],
+                [Surname]           = source.[Surname],
                 [Email]             = source.[Email],
                 [UserPrincipalName] = source.[UserPrincipalName],
                 [MobilePhone]       = source.[MobilePhone],
@@ -43,6 +47,8 @@ BEGIN
                 [TenantId],
                 [ObjectId],
                 [Name],
+                [GivenName],
+                [Surname],
                 [Email],
                 [UserPrincipalName],
                 [MobilePhone],
@@ -57,6 +63,8 @@ BEGIN
                 @TenantId,
                 source.[ObjectId],
                 source.[Name],
+                source.[GivenName],
+                source.[Surname],
                 source.[Email],
                 source.[UserPrincipalName],
                 source.[MobilePhone],

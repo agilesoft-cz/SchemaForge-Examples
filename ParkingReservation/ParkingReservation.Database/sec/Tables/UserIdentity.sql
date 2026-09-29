@@ -7,6 +7,8 @@
     [Provider]          NVARCHAR(50)        NOT NULL CONSTRAINT [DF_UserIdentity_Provider] DEFAULT (N'Entra'),
 
     [Name]              NVARCHAR(100)       NOT NULL,
+    [GivenName]         NVARCHAR(100)       NOT NULL,
+    [Surname]           NVARCHAR(100)       NOT NULL,
     [MobilePhone]       NVARCHAR(50)        NOT NULL DEFAULT N'',
     [Email]             NVARCHAR(100)       NOT NULL,
     [JobTitle]          NVARCHAR(150)       NOT NULL DEFAULT N'',

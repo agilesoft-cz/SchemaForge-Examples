@@ -24,8 +24,19 @@
 
     CONSTRAINT [FK_RoleAssignment_Role]
         FOREIGN KEY ([RoleId])
-        REFERENCES [sec].[Role] ([Id]),
-
-    CONSTRAINT [UQ_RoleAssignment_User_Company_Role]
-        UNIQUE ([UserId], [CompanyId], [RoleId])
+        REFERENCES [sec].[Role] ([Id])
 );
+
+GO
+
+CREATE UNIQUE INDEX [UX_RoleAssignment_User_Role_Global]
+    ON [sec].[RoleAssignment] ([UserId], [RoleId])
+    WHERE [CompanyId] IS NULL;
+
+GO
+
+CREATE UNIQUE INDEX [UX_RoleAssignment_User_Company_Role]
+    ON [sec].[RoleAssignment] ([UserId], [CompanyId], [RoleId])
+    WHERE [CompanyId] IS NOT NULL;
+
+GO
