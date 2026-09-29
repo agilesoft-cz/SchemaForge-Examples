@@ -2,7 +2,7 @@
 (
     [Id] INT IDENTITY(1,1) NOT NULL,
     [CompanyId] INT NOT NULL,
-    [CustomerId] INT NOT NULL,
+    [UserId] INT NOT NULL,
     [VehicleId] INT NOT NULL,
     [ParkingSpaceId] INT NOT NULL,
     [ReservationStatusId] INT NOT NULL,
@@ -22,9 +22,9 @@
         FOREIGN KEY ([CompanyId])
         REFERENCES [dbo].[Company] ([Id]),
 
-    CONSTRAINT [FK_Reservation_Customer]
-        FOREIGN KEY ([CustomerId])
-        REFERENCES [dbo].[Customer] ([Id]),
+    CONSTRAINT [FK_Reservation_User]
+        FOREIGN KEY ([UserId])
+        REFERENCES [sec].[User] ([Id]),
 
     CONSTRAINT [FK_Reservation_Vehicle]
         FOREIGN KEY ([VehicleId])

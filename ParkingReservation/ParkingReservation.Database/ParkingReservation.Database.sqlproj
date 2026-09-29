@@ -22,6 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <Recovery>SIMPLE</Recovery>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -69,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\sec.sql" />
-    <Build Include="dbo\Tables\Customer.sql" />
     <Build Include="dbo\Tables\Company.sql" />
     <Build Include="dbo\Tables\ParkingLot.sql" />
     <Build Include="dbo\Tables\ParkingSpace.sql" />
@@ -91,6 +91,7 @@
     <None Include="Scripts\ParkingReservation.Init.sql" />
     <Build Include="sec\Types\EntraUserType.sql" />
     <Build Include="sec\Stored Procedures\p_SyncEntraUsers.sql" />
+    <Build Include="sec\Tables\User.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParkingReservation.Development.publish.xml" />

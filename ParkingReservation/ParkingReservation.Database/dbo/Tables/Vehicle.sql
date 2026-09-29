@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Vehicle]
 (
     [Id] INT IDENTITY(1,1) NOT NULL,
-    [CustomerId] INT NOT NULL,
+    [UserId] INT NOT NULL,
     [RegistrationNumber] NVARCHAR(50) NOT NULL,
     [Make] NVARCHAR(100) NULL,
     [Model] NVARCHAR(100) NULL,
@@ -15,9 +15,9 @@
     CONSTRAINT [PK_Vehicle]
         PRIMARY KEY ([Id]),
 
-    CONSTRAINT [FK_Vehicle_Customer]
-        FOREIGN KEY ([CustomerId])
-        REFERENCES [dbo].[Customer] ([Id]),
+    CONSTRAINT [FK_Vehicle_User]
+        FOREIGN KEY ([UserId])
+        REFERENCES [sec].[User] ([Id]),
 
     CONSTRAINT [UQ_Vehicle_RegistrationNumber]
         UNIQUE ([RegistrationNumber])

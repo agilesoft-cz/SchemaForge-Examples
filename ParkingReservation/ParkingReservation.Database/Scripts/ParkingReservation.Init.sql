@@ -470,7 +470,7 @@ BEGIN
     (
         'ReferenceData',
         'Reference Data',
-        'Common reference and customer data.',
+        'Common reference and user data.',
         'SchemaForge',
         GETDATE()
     );
@@ -667,14 +667,14 @@ BEGIN
 END;
 
 ------------------------------------------------------------
--- Customer
+-- User
 ------------------------------------------------------------
 
 IF NOT EXISTS
 (
     SELECT 1
     FROM [sec].[DataResource]
-    WHERE [ResourceName] = 'Customer'
+    WHERE [ResourceName] = 'User'
 )
 BEGIN
     INSERT INTO [sec].[DataResource]
@@ -694,7 +694,7 @@ BEGIN
     )
     VALUES
     (
-        'Customer',
+        'User',
         @EntityResourceTypeId,
         @SystemId,
         @GdprPersonalId,
@@ -992,7 +992,7 @@ INNER JOIN [sec].[DataResource] dr
     ON dr.[ResourceName] IN
     (
         'Company',
-        'Customer'
+        'User'
     )
 WHERE pg.[Code] = 'ReferenceData'
   AND NOT EXISTS
