@@ -667,49 +667,6 @@ BEGIN
 END;
 
 ------------------------------------------------------------
--- User
-------------------------------------------------------------
-
-IF NOT EXISTS
-(
-    SELECT 1
-    FROM [sec].[DataResource]
-    WHERE [ResourceName] = 'User'
-)
-BEGIN
-    INSERT INTO [sec].[DataResource]
-    (
-        [ResourceName],
-        [ResourceTypeId],
-        [SystemId],
-        [GdprCategoryId],
-        [RetentionClassId],
-        [SensitivityId],
-        [OwnerTypeId],
-        [ContainsPersonalData],
-        [ContainsBankData],
-        [AggregationOnly],
-        [Author],
-        [Created]
-    )
-    VALUES
-    (
-        'User',
-        @EntityResourceTypeId,
-        @SystemId,
-        @GdprPersonalId,
-        @RetentionStandardId,
-        @SensitivityInternalId,
-        @OwnerApplicationId,
-        1,
-        0,
-        0,
-        'SchemaForge',
-        GETDATE()
-    );
-END;
-
-------------------------------------------------------------
 -- ParkingLot
 ------------------------------------------------------------
 
@@ -925,14 +882,14 @@ BEGIN
 END;
 
 ------------------------------------------------------------
--- Security Schema
+-- DataResource
 ------------------------------------------------------------
 
 IF NOT EXISTS
 (
     SELECT 1
     FROM [sec].[DataResource]
-    WHERE [ResourceName] = 'Security'
+    WHERE [ResourceName] = 'DataResource'
 )
 BEGIN
     INSERT INTO [sec].[DataResource]
@@ -952,14 +909,358 @@ BEGIN
     )
     VALUES
     (
-        'Security',
-        @SchemaResourceTypeId,
+        'DataResource',
+        @EntityResourceTypeId,
         @SystemId,
-        @GdprNoneId,
+        @GdprPersonalId,
         @RetentionStandardId,
         @SensitivityInternalId,
         @OwnerApplicationId,
+        1,
         0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- PermissionGroup
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'PermissionGroup'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'PermissionGroup',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
+        0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- PermissionGroupResource
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'PermissionGroupResource'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'PermissionGroupResource',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
+        0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- ReferenceCode
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'ReferenceCode'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'ReferenceCode',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
+        0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- Role
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'Role'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'Role',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
+        0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- RoleAssignment
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'RoleAssignment'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'RoleAssignment',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
+        0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- RolePermissionAccess
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'RolePermissionAccess'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'RolePermissionAccess',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
+        0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- User
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'User'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'User',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
+        0,
+        0,
+        'SchemaForge',
+        GETDATE()
+    );
+END;
+
+------------------------------------------------------------
+-- UserIdentity
+------------------------------------------------------------
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM [sec].[DataResource]
+    WHERE [ResourceName] = 'UserIdentity'
+)
+BEGIN
+    INSERT INTO [sec].[DataResource]
+    (
+        [ResourceName],
+        [ResourceTypeId],
+        [SystemId],
+        [GdprCategoryId],
+        [RetentionClassId],
+        [SensitivityId],
+        [OwnerTypeId],
+        [ContainsPersonalData],
+        [ContainsBankData],
+        [AggregationOnly],
+        [Author],
+        [Created]
+    )
+    VALUES
+    (
+        'UserIdentity',
+        @EntityResourceTypeId,
+        @SystemId,
+        @GdprPersonalId,
+        @RetentionStandardId,
+        @SensitivityInternalId,
+        @OwnerApplicationId,
+        1,
         0,
         0,
         'SchemaForge',
@@ -991,8 +1292,7 @@ FROM [sec].[PermissionGroup] pg
 INNER JOIN [sec].[DataResource] dr
     ON dr.[ResourceName] IN
     (
-        'Company',
-        'User'
+        'Company'
     )
 WHERE pg.[Code] = 'ReferenceData'
   AND NOT EXISTS
@@ -1086,7 +1386,18 @@ SELECT
     GETDATE()
 FROM [sec].[PermissionGroup] pg
 INNER JOIN [sec].[DataResource] dr
-    ON dr.[ResourceName] = 'Security'
+    ON dr.[ResourceName] IN
+    (
+        'DataResource',
+        'PermissionGroup',
+        'PermissionGroupResource',
+        'ReferenceCode',
+        'Role',
+        'RoleAssignment',
+        'RolePermissionAccess',
+        'User',
+        'UserIdentity'
+    )
 WHERE pg.[Code] = 'Security'
   AND NOT EXISTS
   (
