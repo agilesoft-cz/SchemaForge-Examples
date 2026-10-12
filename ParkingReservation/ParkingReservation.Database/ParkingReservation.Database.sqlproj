@@ -67,6 +67,8 @@
     <Folder Include="Scripts" />
     <Folder Include="sec\Types" />
     <Folder Include="sec\Stored Procedures" />
+    <Folder Include="sec\Functions" />
+    <Folder Include="sec\Policies" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\sec.sql" />
@@ -92,6 +94,16 @@
     <Build Include="sec\Types\EntraUserType.sql" />
     <Build Include="sec\Stored Procedures\p_SyncEntraUsers.sql" />
     <Build Include="sec\Tables\User.sql" />
+    <Build Include="sec\Functions\fn_FilterCompanies.sql" />
+    <Build Include="sec\Policies\CompanyFilterPolicy.sql" />
+    <Build Include="sec\Functions\fn_FilterParkingLots.sql" />
+    <Build Include="sec\Functions\fn_FilterParkingSpaces.sql" />
+    <Build Include="sec\Functions\fn_FilterVehicles.sql" />
+    <Build Include="sec\Functions\fn_FilterReservations.sql" />
+    <Build Include="sec\Policies\ParkingLotFilterPolicy.sql" />
+    <Build Include="sec\Policies\ParkingSpaceFilterPolicy.sql" />
+    <Build Include="sec\Policies\VehicleFilterPolicy.sql" />
+    <Build Include="sec\Policies\ReservationFilterPolicy.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParkingReservation.Development.publish.xml" />
