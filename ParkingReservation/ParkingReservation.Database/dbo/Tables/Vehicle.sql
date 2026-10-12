@@ -17,8 +17,11 @@
 
     CONSTRAINT [FK_Vehicle_User]
         FOREIGN KEY ([UserId])
-        REFERENCES [sec].[User] ([Id]),
-
-    CONSTRAINT [UQ_Vehicle_RegistrationNumber]
-        UNIQUE ([RegistrationNumber])
+        REFERENCES [sec].[User] ([Id])
 );
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [UX_Vehicle_UserId_RegistrationNumber]
+ON [dbo].[Vehicle] ([UserId], [RegistrationNumber])
+WHERE [IsDeleted] = 0;
+GO

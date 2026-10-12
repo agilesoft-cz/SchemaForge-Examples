@@ -701,7 +701,7 @@ WHERE pg.[Code] = 'Security'
         AND pgr.[DataResourceId] = dr.[Id]
   );
 
-  ------------------------------------------------------------
+------------------------------------------------------------
 -- Role Permission Access
 ------------------------------------------------------------
 
@@ -709,27 +709,91 @@ WHERE pg.[Code] = 'Security'
 -- 1 = Read
 -- 2 = Write
 
-INSERT INTO [sec].[RolePermissionAccess] ([RoleId], [PermissionGroupId], [DataAccess], [Author], [Created])
-SELECT
-    rp.[RoleId],
-    pg.[Id],
-    rp.[DataAccess],
-    'SchemaForge',
-    GETDATE()
-FROM
+DECLARE @RolePermissions TABLE
 (
-    VALUES
-        (1, 'Security',      2),
-        (1, 'Parking',       2),
-        (1, 'ReferenceData', 2),
+    [RoleId] INT,
+    [PermissionGroupCode] NVARCHAR(100),
+    [DataAccess] TINYINT
+);
 
-        (2, 'Parking',       1),
-        (2, 'ReferenceData', 1),
-        (2, 'Reservations',  2),
+INSERT INTO @RolePermissions ([RoleId], [PermissionGroupCode], [DataAccess])
+VALUES
+    (1, 'Security',      2),
+    (1, 'Parking',       2),
+    (1, 'ReferenceData', 2),
 
-        (3, 'Parking',       1),
-        (3, 'ReferenceData', 1),
-        (3, 'Reservations',  2)
-) AS rp ([RoleId], [PermissionGroupCode], [DataAccess])
-INNER JOIN [sec].[PermissionGroup] pg
-    ON pg.[Code] = rp.[PermissionGroupCode];
+    (2, 'Parking',       1),
+    (2, 'ReferenceData', 1),
+    (2, 'Reservations',  2),
+
+    (3, 'Parking',       1),
+    (3, 'ReferenceData', 1),
+    (3, 'Reservations',  2);
+
+------------------------------------------------------------
+-- Update Existing Permissions
+------------------------------------------------------------
+
+IF EXISTS
+(
+    SELECT 1
+    FROM [sec].[RolePermissionAccess] rpa
+    INNER JOIN [sec].[PermissionGroup] pg
+        ON pg.[Id] = rpa.[PermissionGroupId]
+    INNER JOIN @RolePermissions rp
+        ON rp.[RoleId] = rpa.[RoleId]
+        AND rp.[PermissionGroupCode] = pg.[Code]
+    WHERE rpa.[DataAccess] <> rp.[DataAccess]
+)
+BEGIN
+    UPDATE rpa
+    SET
+        rpa.[DataAccess] = rp.[DataAccess],
+        rpa.[Editor] = 'SchemaForge',
+        rpa.[Modified] = GETDATE()
+    FROM [sec].[RolePermissionAccess] rpa
+    INNER JOIN [sec].[PermissionGroup] pg
+        ON pg.[Id] = rpa.[PermissionGroupId]
+    INNER JOIN @RolePermissions rp
+        ON rp.[RoleId] = rpa.[RoleId]
+        AND rp.[PermissionGroupCode] = pg.[Code]
+    WHERE rpa.[DataAccess] <> rp.[DataAccess];
+END;
+
+------------------------------------------------------------
+-- Insert Missing Permissions
+------------------------------------------------------------
+
+IF EXISTS
+(
+    SELECT 1
+    FROM @RolePermissions rp
+    INNER JOIN [sec].[PermissionGroup] pg
+        ON pg.[Code] = rp.[PermissionGroupCode]
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM [sec].[RolePermissionAccess] rpa
+        WHERE rpa.[RoleId] = rp.[RoleId]
+          AND rpa.[PermissionGroupId] = pg.[Id]
+    )
+)
+BEGIN
+    INSERT INTO [sec].[RolePermissionAccess] ([RoleId], [PermissionGroupId], [DataAccess], [Author], [Created])
+    SELECT
+        rp.[RoleId],
+        pg.[Id],
+        rp.[DataAccess],
+        'SchemaForge',
+        GETDATE()
+    FROM @RolePermissions rp
+    INNER JOIN [sec].[PermissionGroup] pg
+        ON pg.[Code] = rp.[PermissionGroupCode]
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM [sec].[RolePermissionAccess] rpa
+        WHERE rpa.[RoleId] = rp.[RoleId]
+          AND rpa.[PermissionGroupId] = pg.[Id]
+    );
+END;
